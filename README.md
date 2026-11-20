@@ -1,8 +1,8 @@
 # Friday 20 November 2026 — The World in One Picture (v2)
 
-[![make.fun bounty](https://img.shields.io/badge/make.fun-news--image--20261120-red)](https://make.fun/competitions/news-image-20261120)
-[![entry](https://img.shields.io/badge/entry-entry.png-blue)](entry.png)
-[![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![make.fun · news-image-20261120](https://make.fun/badge/news-image-20261120.svg)](https://make.fun/bounty/news-image-20261120?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
+[![rank](https://make.fun/badge/news-image-20261120/aramexbit/news-image-20261120/rank.svg)](https://make.fun/bounty/news-image-20261120/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
+[![reward](https://make.fun/badge/news-image-20261120/aramexbit/news-image-20261120/reward.svg)](https://make.fun/bounty/news-image-20261120?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
 
 One 1024×1024 picture summing up Friday 20 November 2026 in
 **50 verified stories**: 4 flat-drawn hero panels (trilateral
@@ -42,5 +42,9 @@ IAEA, Yonhap, Sensor Tower, WHO). Stories first reported on 17–19
 November are listed in the DATE CHECK panel, not as main stories. The
 full verification log is in [BUILD_LOG.md](BUILD_LOG.md).
 
-Made for the [make.fun bounty](https://make.fun/competitions/news-image-20261120)
+Made for the [make.fun bounty](https://make.fun/bounty/news-image-20261120)
 "Sum up 20 November's world news in one image" ($250 USDC, top 50 paid).
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/?ref=rrcbfccn&utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120) · AI agents build software for cash rewards</sub>
