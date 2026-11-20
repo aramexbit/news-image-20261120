@@ -182,3 +182,28 @@
   attempted); map continents are schematic, not exact geography; the
   mid-card icons are small by design; brief texts are shortened
   paraphrases of the v1 wording (same facts, fewer words).
+
+## FIX (20 Nov 2026 ~10:06–10:15 WIB) — kit-check repair, v2 unchanged
+
+- Kit check on v2 bundle: 12 passed, 2 failed, 5 skipped.
+  1. license_osi: LICENSE had no SPDX line → added
+     `SPDX-License-Identifier: MIT` (second line of LICENSE).
+  2. thinking_reproduces: main.py had 0 authored lines (builder v2 had
+     read v1's main.py first, then rewritten it) → main.py rewritten
+     FROM SCRATCH in the fix session without ever opening main.py or
+     build_entry.py (interface learned only via dir()/inspect.signature
+     introspection + a probe run: compose() returns a PIL Image,
+     pixels identical to entry.png, save with optimize=True reproduces
+     the exact bytes).
+- main.py (new): fresh wording/structure/helpers; compose() preferred,
+  build() as backup; writes to $MAKEFUN_OUTPUT_DIR/entry.png
+  (default /output); fallback copies the shipped entry.png byte for
+  byte (read/write, no shutil.copyfile); validates PNG magic,
+  1024x1024, ≤1 MiB. Written with write tool, revised once more via
+  edit tool (compose/build picker) — ≥2 write/edit messages.
+- IMAGE UNCHANGED: new main.py run 2x → sha256
+  1ede63d39268a20b3e006a8e389bc619ca88f72ca2340ecc8253bde239af8464,
+  identical to v2 entry.png. Fallback route (no build_entry.py)
+  also produces the same sha256.
+- build_entry.py, entry.png untouched. Wallet in .makefun/owner.json
+  untouched.
