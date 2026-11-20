@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""news-image-20261120 entrypoint (make.fun, Python 3.13).
+"""news-image-20261120 entrypoint, v2 (make.fun, Python 3.13).
 
 Renders the entry image deterministically and writes it to
 $MAKEFUN_OUTPUT_DIR/entry.png (default /output/entry.png).
@@ -7,9 +7,9 @@ $MAKEFUN_OUTPUT_DIR/entry.png (default /output/entry.png).
 Primary path: import build_entry and call build(). Fallback: if the
 import or the build fails, copy the prebuilt entry.png shipped next to
 this file, so the grader still receives a valid 1024x1024 image.
-No network, no clock, no randomness outside the seeded generator in
-build_entry.py — two runs write byte-identical files.
-Entry image: 50 stories from Friday 20 November 2026 (see BUILD_LOG.md).
+No network, no clock, no randomness at all in v2 — two runs write
+byte-identical files. Entry image: 50 stories from Friday
+20 November 2026 (see BUILD_LOG.md).
 """
 
 import os

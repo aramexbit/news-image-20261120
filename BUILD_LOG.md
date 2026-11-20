@@ -120,3 +120,65 @@
 - Commit: `45671ef2a3d5c6034b6711c589ed7b3409489e94` (branch main, pushed;
   `git ls-remote origin HEAD` confirms the same sha on GitHub)
 - Final entry.png sha256: `6a1854ee50844937f5e586755a0c93764562da4fd5c3c68f77bd2095a3eca91c`
+
+## v2 (20 Nov 2026 ~09:45–10:05 WIB) — FULL REBUILD, new visual system
+
+- User order after seeing v1: "kalau belum sempurna buat lagi, coba lebih
+  berwarna dan beda dari yang lain" (make it again, more colourful and
+  different from the others). v1 was a cream-paper serif newspaper — the
+  same look as the live top 3. v2 leaves that look entirely.
+- New system ("dark newswall"): deep navy page, gold frame, white
+  SANS-BOLD masthead, six-colour bar, six coloured UTC chips, centred
+  region pills, numbers strip as six dark chips with NEON figures (gold,
+  cyan, coral, lime, magenta, orange), four full-bleed heroes in four
+  DIFFERENT palettes AND four different illustration styles (summit
+  figurative scene navy/gold; Kerch sunset silhouette purple/orange/red;
+  KAFD neon night city dark teal with THREE glowing missile streaks;
+  Akvan radar rings + diagonal rain storm blue/cyan), mid cards on
+  alternating light tints (sky/peach/mint/lavender cycled by row+col),
+  dark navy map with bright region dots, dark briefs panel, red DATE
+  CHECK panel, HOW SURE ARE WE? legend.
+- Content UNCHANGED from v1: same 50 stories, same numbers, same
+  sources, same DATE CHECK (verified 20 Nov 09:23–09:40 WIB). Only the
+  visual system changed, plus the four v1 defects fixed:
+  * Kerch smoke is now LAYERED puffs (dark base, mid grey, light top).
+  * Every brief shortened to fit ONE line with its source visible — no
+    "…" anywhere (3 briefs needed a second trim: Sacramento "probes
+    Nvidia chips", Los Angeles "GTA VI beats Odyssey $1.8bn",
+    Washington "Russia open to NATO guarantees"; a build-time
+    _fit_checks() asserts every deck/brief/hero line fits, and it
+    caught all three before drawing).
+  * Map continents more recognisable (UK, Japan, New Zealand added).
+  * KAFD hero now has THREE missile streaks with glowing heads.
+- All files rewritten FRESH in this session (write/edit tools, each
+  revised after the render check): main.py, build_entry.py (new
+  compose() layout, new painters, new icon set, new palette),
+  README.md, LICENSE, .gitignore, .makefun/owner.json (wallet
+  UNCHANGED: 34jaMBxaetTScFZ7uGPEMnUm72oNRNzh6VwJEU3MuMJT).
+- Verification:
+  * build_entry.py 2x -> identical sha256
+    1ede63d39268a20b3e006a8e389bc619ca88f72ca2340ecc8253bde239af8464
+  * main.py 2x (MAKEFUN_OUTPUT_DIR=out) -> identical sha256 (same as
+    above, compose path) and `cmp` clean vs build_entry output
+  * entry.png 1024x1024, 275,685 bytes (<= 1 MiB), RGB PNG, no
+    network/clock/randomness anywhere in v2
+  * Visual check (full image + zoom crops of heroes and bottom strip):
+    - FIXED: legend CLAIM/FORECAST lines were half-covered by the DATE
+      CHECK panel -> map panel shortened to 160 px, legend moved up
+      (title 914, REPORTED 926, CLAIM 938), 5 px clear of the panel.
+    - FIXED: Kerch sun overlapped the "2" number badge -> sun moved
+      left/down, clear of the badge.
+    - FIXED: summit "1" badge overlapped the Russian flag -> podiums
+      and chandeliers shifted left (0.13/0.44/0.75), flag clear.
+    - All 50 stories legible; all briefs fit on one line with sources;
+      all mid-card decks + sources visible; no clipping/overlap left.
+- Repo: https://github.com/aramexbit/news-image-20261120 (same repo,
+  new commit to be recorded at push time).
+- NOT submitted yet. Remaining submit-time steps: user approval of v2
+  in the project chat, quota check (daily/total/can_submit), fresh kit
+  download + kit checks, bundle transcripts (SEPARATE agent from this
+  builder session), submit, record claim code.
+- Honest gaps v2: hero figures are generic flat drawings (no likeness
+  attempted); map continents are schematic, not exact geography; the
+  mid-card icons are small by design; brief texts are shortened
+  paraphrases of the v1 wording (same facts, fewer words).
