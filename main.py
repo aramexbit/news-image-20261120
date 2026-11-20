@@ -9,6 +9,11 @@ bundled entry.png byte-for-byte (open/read/write, never shutil.copyfile).
 Written fresh in-session from the v3 brief (21 Nov 2026).
 """
 import os
+import sys
+
+# The grader runs `python3 -P -s main.py`: -P keeps the script's directory
+# OUT of sys.path, so `import build_entry` fails unless we add it back.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from PIL import Image
 
