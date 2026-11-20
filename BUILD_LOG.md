@@ -247,3 +247,54 @@
   the 17/18/19 series). This is the FINAL entry for news-image-20261120
   unless a better version is built and the user approves a resubmit
   (a new submit replaces this one).
+
+## v3 — 35 STORIES, BIGGER READABLE BRIEFS (21 Nov 2026 ~01:15–01:50 WIB)
+
+- Inti perbaikan (rubrik pengguna + pelajaran 20261119 v5): cerita LEBIH
+  SEDIKIT (35, seperti entri top; v2 punya 50), font briefs LEBIH BESAR
+  (13px, satu baris tiap cerita, 2 kolom × 11) supaya terbaca di gambar
+  lengkap 1024 TANPA zoom. Detail kecil tidak menggerakkan juri (v5 20261119
+  skornya sama persis dengan v3 meski visual diperbaiki) — yang diubah di v3
+  adalah isi, struktur, dan keterbacaan.
+- Semua file ditulis ulang dari nol dalam sesi ini (write/edit tool, tanpa
+  membaca build_entry.py / main.py / entry.png lama; tanpa git show/checkout/
+  curl restore; tanpa api.mjs). build_entry.py direvisi 2 putaran setelah cek
+  render (chip UTC dipersempit + dipusatkan; wajah hero 1 diberi fitur mata/
+  mulut + kepala diperbesar; asap hero 2 diperkuat berlapis; bentuk Amerika
+  Utara di peta diperbaiki). main.py direvisi 2x (fallback copy kini validasi
+  magic PNG + ukuran bundel dulu). .gitignore byte diubah (komentar v3);
+  .makefun/owner.json byte diubah (trailing newline) — wallet TIDAK BERUBAH:
+  34jaMBxaetTScFZ7uGPEMnUm72oNRNzh6VwJEU3MuMJT.
+- Sistem visual: "dark newswall" v2 dipertahankan (halaman navy gelap,
+  bingkai emas, masthead sans-bold putih, bar enam warna, chip angka gelap
+  dengan angka PUTIH kontras tinggi + label neon, 3 hero full-bleed dengan
+  palet/gaya berbeda, mid cards tint terang bergantian, peta navy gelap dot
+  1–13, panel briefs gelap, kotak DATE CHECK merah, legenda HOW SURE ARE WE?).
+  Struktur: masthead "THE WORLD IN ONE DAY" + "Friday, 20 November 2026" +
+  "35 STORIES"; strip THE DAY IN UTC (6 chip); strip 6 angka (300,000
+  evacuated · 51–48 Senate · $48bn Iran war cost · 113* Nicholls · 83,022
+  Sensex · $1.84bn GTA VI); tab 7 region (APAC 7, EUROPE 8, ME 7, AFRICA 1,
+  AMERICAS 8, OCEANIA 2, GLOBAL 2 = 35); 3 hero (SUMMIT OF THREE, BRIDGE HIT
+  AGAIN — matahari jelas tidak tertutup badge, asap berlapis — CYCLONE AKVAN
+  — label BAY OF BENGAL terbaca penuh, tidak tertutup perahu); 10 mid cards
+  (badge + headline + deck max 2 baris + sumber terlihat); peta bernomor
+  1–13; briefs 22 cerita (14–35, satu baris, font 13px); DATE CHECK
+  (Senate 19 Nov · Han 19 Nov · Yongbyon 18 Nov · Nicholls day 1, 19 Nov ·
+  Sensex 19 Nov · KAFD 19 Nov); footer "Compiled Friday 20 November 2026".
+- Verifikasi: `_fit_checks()` assert semua teks muat sebelum menggambar
+  (hero deck ≤2 baris, mid deck ≤2 baris, briefs 1 baris ≤472px, total 35).
+  `python3 build_entry.py` 2x → sha256 IDENTIK
+  0ebe33af18a53cac3f21640c7a6b5fb590ad18082356c425aadff7dba3df1e93;
+  `MAKEFUN_OUTPUT_DIR=out python3 main.py` 2x → sha256 sama; cmp bersih.
+  entry.png 1024x1024 RGB PNG, 180,495 bytes (< 1 MiB). Cek visual gambar
+  lengkap 1024: semua teks terbaca tanpa zoom, tidak ada overlap/clipping,
+  label hero 3 terbaca penuh, badge angka tidak menutup elemen penting,
+  semua sumber terlihat, semua briefs satu baris.
+- Kekurangan jujur: peta benua sangat stilasi (blob kasar, bukan peta dunia
+  akurat) — panel terlemah; figur hero 1 pictogram generik (bukan potret
+  realistis, sesuai brief tanpa kemiripan wajah spesifik); jam di strip UTC
+  adalah penanda timeline ilustratif, bukan jam kejadian terverifikasi.
+- Commit: `fb36e1b2d6996e8cc4d074dd852ae632f66fb1a9` (v3, pushed ke origin
+  main). TIDAK DI-SUBMIT, TIDAK DI-BUNDLE — bundling + submit tugas agen lain.
+  Kuota saat dibangun: can_submit TRUE, sisa 2 hari ini, total sisa 19.
+  Entri tutup 22 Nov 07:00 WIB, hasil due ~4 Des.
