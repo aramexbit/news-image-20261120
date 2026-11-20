@@ -1,4 +1,4 @@
-# v2: build outputs and caches (entry.png itself is committed)
+# v3: build outputs and caches (entry.png itself is committed)
 out/
 __pycache__/
 *.pyc

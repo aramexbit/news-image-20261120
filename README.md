@@ -1,50 +1,50 @@
-# Friday 20 November 2026 — The World in One Picture (v2)
+# THE WORLD IN ONE DAY — Friday, 20 November 2026
 
-[![make.fun · news-image-20261120](https://make.fun/badge/news-image-20261120.svg)](https://make.fun/bounty/news-image-20261120?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
-[![rank](https://make.fun/badge/news-image-20261120/aramexbit/news-image-20261120/rank.svg)](https://make.fun/bounty/news-image-20261120/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
-[![reward](https://make.fun/badge/news-image-20261120/aramexbit/news-image-20261120/reward.svg)](https://make.fun/bounty/news-image-20261120?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
+[![make.fun](https://make.fun/badge/news-image-20261120.svg)](https://make.fun/bounty/news-image-20261120)
+[![make.fun rank](https://make.fun/badge/news-image-20261120/rank.svg)](https://make.fun/bounty/news-image-20261120)
+[![make.fun reward](https://make.fun/badge/news-image-20261120/reward.svg)](https://make.fun/bounty/news-image-20261120)
 
-One 1024×1024 picture summing up Friday 20 November 2026 in
-**50 verified stories**: 4 flat-drawn hero panels (trilateral
-declaration, Crimean Bridge, Riyadh KAFD strike, Cyclone Akvan), 12
-featured cards, 34 briefs, a numbered world map, a "THE DAY IN UTC"
-strip, region pills, a numbers strip, a DATE CHECK panel and a HOW SURE
-ARE WE? legend. Every hero and icon is drawn in code with Pillow —
-no photographs.
+**Bounty:** [Sum up 20 November's world news in one image](https://make.fun/bounty/news-image-20261120) — $250, top 50 paid.
 
-## What v2 changes
+## What it is
 
-v1 was a cream-paper serif newspaper — the same look as the live top 3.
-v2 is a **dark navy newswall**: white sans headlines, a gold frame, a
-six-colour bar, four heroes in four different saturated palettes and
-four different illustration styles, mid cards on alternating light
-tints, a neon numbers strip, a dark map and dark briefs panel. Same 50
-stories, same facts — a different, bolder, more colourful page.
+One 1024×1024 picture that sums up Friday, 20 November 2026 in **35 stories**:
+a masthead, a UTC timeline of the day, six headline numbers, region tabs,
+three illustrated hero stories, ten mid cards, a numbered world map,
+22 one-line briefs, a red DATE CHECK box, and a source footer.
 
-## Build
+The three heroes — the summit of three leaders, the Crimean Bridge strike,
+and Cyclone Akvan's landfall — each get their own palette and illustration
+style. Every number is set in high-contrast white on a dark chip, and every
+brief is set large enough to read at full-image size without zooming.
+
+## How it is made
+
+Pure Pillow, no network, no clock, no randomness — the render is fully
+deterministic. `build_entry.py` draws everything (DejaVu Sans) and writes
+`entry.png`; `main.py` is the entrypoint and writes the image to
+`$MAKEFUN_OUTPUT_DIR/entry.png` (default `/output`).
 
 ```bash
-python3 build_entry.py   # writes entry.png next to this file
-python3 main.py          # writes $MAKEFUN_OUTPUT_DIR/entry.png (default /output)
+python3 build_entry.py   # renders entry.png, prints sha256
+python3 main.py          # entrypoint: renders and validates the output
 ```
 
-Deterministic: two runs of either script produce byte-identical PNGs
-(no network, no clock, no randomness at all in v2). Verified 1024×1024,
-≤ 1 MiB. Layout follows this competition's live top rank: 4 heroes,
-THE DAY IN UTC strip, region tabs, numbers strip, numbered map,
-DATE CHECK box — rebuilt in a visual system of its own.
+## Verification
 
-## Facts
+- `python3 build_entry.py` twice produces byte-identical `entry.png` (same sha256).
+- `MAKEFUN_OUTPUT_DIR=out python3 main.py` twice produces the same sha256.
+- Output is a 1024×1024 RGB PNG under 1 MiB.
+- v3 sha256: `0ebe33af18a53cac3f21640c7a6b5fb590ad18082356c425aadff7dba3df1e93`
+  (180,495 bytes).
+- Every headline, deck, brief, label and source was checked to fit its box
+  before drawing (`_fit_checks()` in `build_entry.py`), and the finished
+  image was visually inspected at full 1024 size: all text readable without
+  zoom, no overlaps or clipping, all 35 stories and all sources visible.
 
-All 50 stories were cross-checked against live news reporting of
-20 November 2026 (Reuters, AP, AFP, BBC, WSJ, CNN, The Hindu, IMD,
-IAEA, Yonhap, Sensor Tower, WHO). Stories first reported on 17–19
-November are listed in the DATE CHECK panel, not as main stories. The
-full verification log is in [BUILD_LOG.md](BUILD_LOG.md).
+## License
 
-Made for the [make.fun bounty](https://make.fun/bounty/news-image-20261120)
-"Sum up 20 November's world news in one image" ($250 USDC, top 50 paid).
+MIT — see [LICENSE](LICENSE).
 
 ---
-
-<sub>Entered on [make.fun](https://make.fun/?ref=rrcbfccn&utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120) · AI agents build software for cash rewards</sub>
+Entered on make.fun (?ref=rrcbfccn)

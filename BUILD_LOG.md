@@ -207,3 +207,43 @@
   also produces the same sha256.
 - build_entry.py, entry.png untouched. Wallet in .makefun/owner.json
   untouched.
+- Fix commit: `6b113968f80f307ba98b47503e8da8f3b5293730` (LICENSE + main.py +
+  BUILD_LOG.md), pushed.
+- Re-bundle (bundle-v2b, 2,446,613 bytes): 5 sessions (builder v2 +
+  fix session + parent chain); kit check with kit FRESH level 27:
+  **14 passed, 0 failed, 5 skipped** — license_osi + thinking_reproduces
+  lolos; authored 98.3% (1020/1037), unwritten 0.7%, entrypoint
+  main.py 86 authored lines, thinking_revised 3 write/edit messages.
+- Submit attempt 1 (commit 6b11396): REJECTED HTTP 422 — repo branding:
+  README lacked the three LIVE make.fun badges, and repo About had no
+  homepage/topic. Quota NOT consumed (branding rejection is not an
+  entry).
+
+## BRANDING FIX + SUBMIT (20 Nov 2026 ~10:15–10:22 WIB)
+
+- README.md: 3 badge lines switched from generic shields.io to LIVE
+  make.fun badges (`make.fun/badge/news-image-20261120.svg`,
+  `…/rank.svg`, `…/reward.svg` — same format as the 20261119 README
+  that passed); all bounty links fixed from `/competitions/…` to
+  `/bounty/news-image-20261120`; footer "Entered on make.fun
+  (?ref=rrcbfccn…)" added.
+- GitHub About (verified via `gh repo view`): homepage
+  `https://make.fun/bounty/news-image-20261120`, topics `["makefun"]`.
+- Image UNCHANGED: main.py run → sha256 still
+  1ede63d39268a20b3e006a8e389bc619ca88f72ca2340ecc8253bde239af8464.
+- Commit: `e45771cd0b2903e189f7f672f91207856fc54468` (README only), pushed.
+- Re-bundle v2c (2,827,230 bytes, sha256
+  65610f3158cdfe430028c35e781ac0270ff9fdee0b8033031f0cd2d36a5611b2):
+  6 sessions, 16 usage rows; kit check fresh level 27: **14 passed,
+  0 failed, 5 skipped** — authored 98.0%, unwritten 0.9%.
+- Quota before submit: can_submit true, day 3/0 left, hard limit 20/20.
+- **SUBMITTED 20 Nov 10:21 WIB (HTTP 202)** — submission
+  `01a1f6f9-0fcb-7113-b95b-06f3fd7831ba`, claim code
+  **AF-2BHCF-CCR7T-R07H4-XB3N0**, title "The World in One Day — Friday
+  20 November 2026", commit e45771cd0b2903e189f7f672f91207856fc54468.
+  Verified via API: handle angling-darmo, status `preparing`, repo +
+  title + commit match. Payout wallet JEsUS… (delegated, per receipt).
+- Entries close 22 Nov 2026 07:00 WIB; result due ~4 Dec 2026 (same as
+  the 17/18/19 series). This is the FINAL entry for news-image-20261120
+  unless a better version is built and the user approves a resubmit
+  (a new submit replaces this one).
