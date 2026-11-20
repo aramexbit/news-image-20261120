@@ -117,4 +117,6 @@
 
 ## Repo
 - https://github.com/aramexbit/news-image-20261120 (public)
-- Commit: TBD (filled after push)
+- Commit: `45671ef2a3d5c6034b6711c589ed7b3409489e94` (branch main, pushed;
+  `git ls-remote origin HEAD` confirms the same sha on GitHub)
+- Final entry.png sha256: `6a1854ee50844937f5e586755a0c93764562da4fd5c3c68f77bd2095a3eca91c`
