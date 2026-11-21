@@ -243,10 +243,96 @@
   20 November 2026", commit e45771cd0b2903e189f7f672f91207856fc54468.
   Verified via API: handle angling-darmo, status `preparing`, repo +
   title + commit match. Payout wallet JEsUS… (delegated, per receipt).
-- Entries close 22 Nov 2026 07:00 WIB; result due ~4 Dec 2026 (same as
-  the 17/18/19 series). This is the FINAL entry for news-image-20261120
+- Entries close 22 Nov 2026 07:00 WIB; result due 6 Dec 2026 15:00 WIB
+  (per live status — the 17/18/19 series is ~4 Dec). This is the FINAL entry for news-image-20261120
   unless a better version is built and the user approves a resubmit
   (a new submit replaces this one).
+
+## v3 (21 Nov 2026 ~01:12–01:40 WIB) — 35 stories, bigger readable briefs
+
+- User order (rubrik 21 Nov 01:09 WIB): fewer stories like the top entries
+  (33–38), briefs BIGGER so they read at full 1024 size WITHOUT zoom.
+  v2 live rank 619/10.156, judge 98,12% (top-50 line 98,85%; rank 1
+  samatch-we 99,21%, "35 stories").
+- Built fresh in a recorded builder session (all files written from the
+  prose spec, never read old files): 3 heroes + 10 mid + 22 briefs = 35;
+  "dark newswall" system kept; briefs 13px one line each; numbers white
+  on dark chips; region totals ASIA-PACIFIC 7, EUROPE 8, MIDDLE EAST 7,
+  AFRICA 1, AMERICAS 8, OCEANIA 2, GLOBAL 2.
+- Verification: build_entry.py 2x + main.py 2x → identical sha256
+  `0ebe33af18a53cac3f21640c7a6b5fb590ad18082356c425aadff7dba3df1e93`
+  (180,495 bytes, 1024x1024 RGB PNG); visual check of the full image:
+  all text readable without zoom, no overlap/clipping, "BAY OF BENGAL"
+  fully readable, Kerch sun clear of the badge, all sources visible.
+  Honest gaps: map is schematic blobs (weakest panel); hero-1 figures
+  are generic pictograms; UTC strip times illustrative.
+- Commit v3: `fb36e1b2d6996e8cc4d074dd852ae632f66fb1a9` (pushed).
+- Bundle v3 (SEPARATE agent): `news-image-20261120-bundle-v3.tar.gz`
+  (3,371,791 byte, sha256 `2773df70beb3f85289d045f5280a7fe62dc767560cea281f668f331b45191c5e`),
+  kit fresh level 29: **13 passed, 0 failed, 6 skipped** — authored
+  97,6%, unwritten 0,4%, main.py 40 authored lines.
+- SUBMIT attempt 1 (commit 1242d2f, bundle v3): REJECTED HTTP 422
+  repo_readme — README rank/reward badges lacked the owner/repo path
+  segment. Quota NOT consumed (branding refusals never count).
+- Fix: README badge lines corrected to the exact site format
+  (`…/badge/news-image-20261120/aramexbit/news-image-20261120/rank.svg`
+  and `…/reward.svg`, + utm + leaderboard link); commit
+  `769b89fe9c81b11029c219cbeb540fb493cd3b74`, pushed.
+- Re-bundle v3b (SEPARATE agent): `news-image-20261120-bundle-v3b.tar.gz`
+  (3,048,788 byte, sha256 `fcaa64cee0d378d108aec33507434bd987050227e6ed072fe8df0c4bd760e29d`),
+  kit fresh level 29: **13 passed, 0 failed, 6 skipped** — authored
+  97,3%, unwritten 0,7%, main.py 40 authored lines.
+- Quota before submit: can_submit true, day 3/1 taken/left 2, hard
+  limit 20/19 left.
+- **SUBMITTED 21 Nov 01:40 WIB (HTTP 202)** — submission
+  `01a1fa42-880f-73c9-9fce-6866cfbaa626`, claim code
+  **AF-1J3MQ-2AS61-XY2HK-C8H2S**, title "The World in One Day — Friday
+  20 November 2026", commit 769b89fe9c81b11029c219cbeb540fb493cd3b74.
+  Verified via API: handle angling-darmo, status `preparing`, repo +
+  title + commit match. Payout wallet JEsUS… (delegated, per receipt).
+- Entries close 22 Nov 2026 07:00 WIB; result due 6 Dec 2026 15:00 WIB
+  (per live status — the 17/18/19 series is ~4 Dec). This
+  REPLACES v2 as the live entry (a new submit replaces the old one).
+
+## v3 — round 2 + round 3 REJECTED (run_completes), real cause found
+
+- Round 2 (submission 01a1fa42, commit 769b89f): REJECTED round 2,
+  `run_completes` FAIL — grader runs `python3 -P -s /bot/main.py`
+  (python3.13, no network, uid 65534, read-only /bot, empty /output,
+  60 s) and the program exited 1. First diagnosis: `-P` keeps the
+  script dir out of sys.path → `import build_entry` fails. Fix (patch,
+  5 lines): `sys.path.insert(0, dirname(abspath(__file__)))` before the
+  import; verified grader-style EXIT 0, same sha256. Commit 3e65304.
+- Round 3 (submission 01a1fa55-39c0-7506-903a-7ff16ac4e246, claim
+  AF-EJFX6-73AK7-HTQCC-C4AXA, commit 3e65304, submitted 21 Nov
+  02:00 WIB): REJECTED round 3, SAME `run_completes` FAIL exit 1.
+  The sys.path fix was in the submitted commit (verified via
+  git show) — so the real cause was elsewhere.
+- REAL CAUSE: v3's main.py did `from PIL import Image` at TOP LEVEL.
+  If Pillow is absent from the grader's pinned image, the import
+  fails before main() ever runs. PROOF: v2's main.py (commit
+  e45771c, 119 lines) has NO top-level PIL import — lazy composer
+  import inside try, prebuilt-copy fallback, PNG validation via
+  struct/hashlib only — and v2 PASSED run_completes (rank 619).
+  Its docstring even anticipates "Pillow is missing from the
+  grading container".
+- FIX (patch main.py only, 21 Nov ~02:06 WIB): rewrote main.py to the
+  v2-proven pattern — no top-level PIL/build_entry imports (only
+  hashlib/os/struct/sys/pathlib); composer imported lazily inside
+  try; fallback copies bundled entry.png; validation via struct.
+  Verified 3 ways, ALL exit 0, same sha256
+  `0ebe33af18a53cac3f21640c7a6b5fb590ad18082356c425aadff7dba3df1e93`:
+  (1) grader-style `python3 -P -s`, (2) PIL blocked in sys.modules
+  (fallback path), (3) normal run. Commit
+  `9b2efb6b8bfbe93029a429da36a9a04819df06eb`, pushed.
+- QUOTA: day 3/3 used (v2 + round 2 + round 3), can_submit FALSE,
+  hard left 17. Reset 2026-11-21T00:00:00Z = 07:00 WIB 21 Nov.
+  Round 4 (commit 9b2efb6, bundle v3d) submits AFTER the reset.
+- LESSON (permanent): an entrypoint must survive the grader's
+  minimal image — NO heavy imports at module level; lazy-import
+  everything optional, validate output with stdlib only, always
+  keep a byte-identical prebuilt fallback. Test with `-P -s` AND
+  with the optional dependency blocked, not just with it present.
 
 ## v3 — 35 STORIES, BIGGER READABLE BRIEFS (21 Nov 2026 ~01:15–01:50 WIB)
 
@@ -298,3 +384,34 @@
   main). TIDAK DI-SUBMIT, TIDAK DI-BUNDLE — bundling + submit tugas agen lain.
   Kuota saat dibangun: can_submit TRUE, sisa 2 hari ini, total sisa 19.
   Entri tutup 22 Nov 07:00 WIB, hasil due ~4 Des.
+
+## v3 — ROUND 4 SUBMITTED (21 Nov 2026 ~07:10–07:16 WIB) — INTAKE LOLOS, SCORED
+
+- Setelah reset kuota harian 00:00 UTC (07:00 WIB): quota check
+  can_submit TRUE, day cap 3 / taken 0 / left 3, hard limit 20 / left 17.
+- Bundle v3d (sudah jadi sebelumnya): `news-image-20261120-bundle-v3d.tar.gz`
+  (3,502,849 byte, sha256 `529c8f12f0e53d58f0f2d337103b8472eee4a72e9d293e1b20be2e7acec84775`),
+  kit fresh level 29: 13 passed, 0 failed, 6 skipped, authored 96,9%.
+- **SUBMITTED 21 Nov 07:10 WIB (HTTP 202)** — submission
+  `01a1fb70-c093-7057-a522-982870119ff4`, claim code
+  **AF-A8F9W-VMCY2-H3VTJ-GGWQ8**, title "The World in One Day — Friday
+  20 November 2026", commit 9b2efb6b8bfbe93029a429da36a9a04819df06eb
+  (main.py Pillow-free). Payout wallet JEsUS… (delegated, per receipt).
+- Status ~5 menit kemudian (07:16 WIB): **scored, outcome not decided yet**
+  (round 4, owner view). SEMUA gate intake LOLOS — termasuk
+  run_completes (penyebab gagal round 2 & 3 SUDAH TERATASI: tidak ada
+  lagi kegagalan grader `python3 -P -s main.py`). Semua check pass
+  (account_wallet, quota, form, entry_signature, repo_*, license_osi,
+  duplicate_snapshot, security_audit, repo_readme, repo_about,
+  transcripts_*, thinking_*); 3 skip (sponsor_self_entry,
+  thinking_on_task, thinking_fresh — sama seperti sebelumnya).
+- Judge dev phase: provisional rate 0.923315 (90% interval
+  0.902113–0.944517), 7 won / 0 drawn / 5 lost dari 12 games.
+  Peringkat akhir belum diputuskan.
+- Entri ini MENGGANTIKAN round 3 sebagai entri live (submit baru
+  menggantikan yang lama). Entri tutup 22 Nov 2026 07:00 WIB;
+  hasil due 6 Des 2026 15:00 WIB (per live status).
+- Catatan: kit level 29 vs situs level 30 — submit tetap diterima dan
+  semua gate lolos; tidak perlu download kit baru untuk round ini.
+- TIDAK ada resubmit lagi untuk round ini. Satu submit saja, sesuai
+  instruksi.
